@@ -7,9 +7,9 @@ router.post( '/irsend', function( req, res, next ) {
 	var lirc = req.app.locals.lirc;
 
   console.log( 'Req: ' + inspect( req.query, null, 3 ) );
-  console.log( 'Remote: ' + req.params.remote + '. Cmd: ' + req.params.code );
+  console.log( 'Remote: ' + req.query.remote + '. Cmd: ' + req.query.code );
 
-  lirc.irsend.send_once( req.params.remote, req.params.code, function ( err, stdout, stderr ) {
+  lirc.irsend.send_once( req.query.remote, req.query.code, function ( err, stdout, stderr ) {
   	if( err ) {
   		console.log( 'exec error: ' + err );
   	}
