@@ -3,17 +3,34 @@ var path         = require('path');
 var logger       = require('morgan');
 var bodyParser   = require('body-parser');
 
+var lirc         = require('lirc_node')
+
 var routes = require('./routes/index');
+
+lirc.init();
 
 var app = express();
 
-app.use( logger('dev') );
+app.use( logger( 'dev' ) );
 app.use( bodyParser.json() );
-app.use( bodyParser.urlencoded({ extended: false } ) );
+app.use( bodyParser.urlencoded( { extended: false } ) );
 
 app.use( express.static( path.join( __dirname, 'public') ) );
 
 app.use('/', routes );
+
+
+/*
+function _init() {
+  lirc.init();
+
+}
+*/
+
+// _init();
+
+app.locals.lirc = lirc;
+
 
 // catch 404 and forward to error handler
 app.use( function( req, res, next ) {
