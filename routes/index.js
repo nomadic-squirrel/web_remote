@@ -16,6 +16,7 @@ router.post( '/irsend', function( req, res, next ) {
   	if( err ) {
   		console.log( 'Error running send_once: ' + err );
   		res.status( 500 ).send( 'It broke' );
+  		return;
 
   	}
 
