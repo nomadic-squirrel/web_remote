@@ -31,6 +31,8 @@ winston.add( winston.transports.File, {
   json: false
 });
 
+winston.info( 'Started' );
+
 
 /*
 function _init() {

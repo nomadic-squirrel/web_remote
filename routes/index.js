@@ -8,7 +8,7 @@ router.post( '/irsend', function( req, res, next ) {
 	var lirc    = req.app.locals.lirc;
 	var winston = req.app.locals.winston;
 
-	winston.info(  'Remote: ' + req.query.remote + '. Cmd: ' + req.query.code );
+	winston.info(  'Remote: "' + req.query.remote + '". Cmd: "' + req.query.code + '"' );
 
   // We should probably sanitize the inputs here. 
   // Unless we can get lirc_node to use something other than exec
