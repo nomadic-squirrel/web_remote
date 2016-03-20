@@ -1,6 +1,8 @@
 var express      = require('express');
 var path         = require('path');
 var logger       = require('morgan');
+var winston      = require('winston');
+
 var bodyParser   = require('body-parser');
 
 var lirc         = require('lirc_node')
@@ -20,6 +22,16 @@ app.use( express.static( path.join( __dirname, 'public') ) );
 app.use('/', routes );
 
 
+winston.add( winston.transports.File, {
+  level: 'info',
+  filename: 'web_remote.log',
+  maxFiles: 2,
+  maxsize: 2000000,
+  timestamp: true,
+  json: false
+});
+
+
 /*
 function _init() {
   lirc.init();
@@ -29,7 +41,8 @@ function _init() {
 
 // _init();
 
-app.locals.lirc = lirc;
+app.locals.lirc    = lirc;
+app.locals.winston = winston;
 
 
 // catch 404 and forward to error handler

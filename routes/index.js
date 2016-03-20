@@ -4,7 +4,9 @@ var inspect = require( 'util' ).inspect;
 
 
 router.post( '/irsend', function( req, res, next ) {
-	var lirc = req.app.locals.lirc;
+	
+	var lirc    = req.app.locals.lirc;
+	var winston = req.app.locals.winston;
 
   // console.log( 'Req: ' + inspect( req.query, null, 3 ) );
   // console.log( 'Remote: ' + req.query.remote + '. Cmd: ' + req.query.code );
