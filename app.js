@@ -24,7 +24,7 @@ app.use('/', routes );
 
 winston.add( winston.transports.File, {
   level: 'info',
-  filename: 'web_remote.log',
+  filename: path.join( __dirname, 'web_remote.log' ),
   maxFiles: 2,
   maxsize: 2000000,
   timestamp: true,
