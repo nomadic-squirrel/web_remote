@@ -4,19 +4,18 @@ var inspect = require( 'util' ).inspect;
 
 
 router.post( '/irsend', function( req, res, next ) {
-	
+
 	var lirc    = req.app.locals.lirc;
 	var winston = req.app.locals.winston;
 
-  // console.log( 'Req: ' + inspect( req.query, null, 3 ) );
-  // console.log( 'Remote: ' + req.query.remote + '. Cmd: ' + req.query.code );
+	winston.info(  'Remote: ' + req.query.remote + '. Cmd: ' + req.query.code );
 
   // We should probably sanitize the inputs here. 
   // Unless we can get lirc_node to use something other than exec
   lirc.irsend.send_once( req.query.remote, req.query.code, function ( err, stdout, stderr ) {
 
   	if( err ) {
-  		console.log( 'Error running send_once: ' + err );
+  		winston.error( 'Error running send_once: ' + err );
   		res.status( 500 ).send( 'It broke' );
   		return;
 
